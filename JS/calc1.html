@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .calc {
+                width: 500px;
+                margin: 5% auto;
+                font-size: 30px;
+                letter-spacing: 4px;
+                padding: 20px;
+                border-radius: 2px;
+                box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .7);
+            }
+            
+            .input {
+                border: 1px solid #ddd;
+                border-radius: 2px;
+                text-align: right;
+                padding: 10px 15px;
+                height: 34px;
+                overflow-x: auto;
+                transition: all .3s;
+            }
+            
+            .input:hover {
+                border: 1px solid #bbb;
+                box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, .2);
+            }
+            
+            .buttons {}
+            
+            .operators {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            
+            .operators div {
+                border: 1px solid #bbb;
+                border-radius: 2px;
+                text-align: center;
+                cursor: pointer;
+                background: #ddd;
+                transition: all .3s;
+                width: 80px;
+                padding: 10px;
+            }
+            
+            .operators div:hover {
+                background: #bbb;
+                box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+                border-color: #aaa;
+            }
+            
+            .left {
+                display: inline-block;
+            }
+            
+            .numbers div {
+                display: inline-block;
+                border: 1px solid #ddd;
+                border-radius: 2px;
+                width: 80px;
+                text-align: center;
+                cursor: pointer;
+                background: #eee;
+                transition: all .3s;
+                padding: 10px;
+                margin: 20px 19px 0 0; 
+            }
+            
+            .numbers div:hover {
+                background: #f1f1f1;
+                box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+                border-color: #bbb;
+            }
+            
+            .result {
+                display: inline-block;
+                border: 1px solid #0685d2;
+                color: #fff;
+                background: #0685d2;
+                cursor: pointer;
+                text-align: center;
+                width: 80px;
+                border-radius: 2px;
+                transition: all .3s;
+                margin-top: 20px;
+                vertical-align: top;
+                padding: 124px 10px;
+            }
+            
+            .result:hover {
+                box-shadow: inset 0 1px 10px 0 rgba(0, 0, 0, .5);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="calc">
+            <div class="input"></div>
+            <div class="buttons">
+                <div class="operators">
+                    <div>+</div>
+                    <div>-</div>
+                    <div>&times;</div>
+                    <div>&divide;</div>
+                </div>
+                <div class="left">
+                    <div class="numbers">
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                    </div>
+                    <div class="numbers">
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                    </div>
+                    <div class="numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                    </div>
+                    <div class="numbers">
+                        <div>0</div>
+                        <div class="dot">.</div>
+                        <div class="reset">C</div>
+                    </div>
+                </div>
+                <div class="result">=</div>
+            </div>
+        </div>
+        
+        <script>
+            
+            var input = document.querySelector('.input'),
+                numbers = document.querySelectorAll('.numbers div'),
+                operators = document.querySelectorAll('.operators div'),
+                reset = document.querySelector('.reset'),
+                dot = document.querySelector('.dot'),
+                result = document.querySelector('.result');
+            
+            //Функция равно
+            var operator_result = function(operators, numbers, next_operator='') {
+                
+                //Действие +
+                let plus = operators.indexOf('+');
+                if(plus != -1) {
+                    numbers.splice(0, 2, Number(numbers[0]) + Number(numbers[1]));
+                    console.log(numbers);
+                }
+                
+                //Действие -
+                let minus = operators.indexOf('-');
+                if(minus != -1) {
+                    numbers.splice(0, 2, Number(numbers[0]) - Number(numbers[1]));
+                    console.log(numbers);
+                }
+                
+                //Действие ×
+                let multi = operators.indexOf('×');
+                if(multi != -1) {
+                    numbers.splice(0, 2, Number(numbers[0]) * Number(numbers[1]));
+                    console.log(numbers);
+                }
+                
+                //Действие ÷
+                let divide = operators.indexOf('÷');
+                if(divide != -1) {
+                    numbers.splice(0, 2, Number(numbers[0]) / Number(numbers[1]));
+                    console.log(numbers);
+                }
+                
+                input.innerHTML = numbers[0] + next_operator;
+            }
+            
+            // Кнопка сброса
+            reset.addEventListener('click', function() {
+                input.innerHTML = '';
+            });
+            
+            
+            //Кнопки с цифрами
+            for(let i = 0; i < numbers.length - 2; i++) {
+                numbers[i].addEventListener('click', function(e) {
+                    input.innerHTML += e.target.innerHTML;
+                });
+            }
+            
+            //Кнопки с операторами
+            for(let i = 0; i < operators.length; i++) {
+                operators[i].addEventListener('click', function(e) {
+                    
+                    let input_now = input.innerHTML;
+                    let last_char = input_now[input_now.length - 1]
+                    
+                    if(last_char !== '+' && last_char !== '-' && last_char !== '×' && last_char !== '÷') {
+                        input.innerHTML += e.target.innerHTML;
+                    } else {
+                        //input.innerHTML = input.innerHTML.slice(0, input.innerHTML.length - 1) + e.target.innerHTML;
+                        input.innerHTML = input.innerHTML.replace(last_char, e.target.innerHTML);
+                    }
+                    
+                    input_now = input.innerHTML;
+                    
+                    //Массив с операторами
+                    let operators = input_now.replace(/[0-9]|\./g, '').split('');
+
+                    if(operators.length > 1) {
+                        //Массив с числами
+                        let numbers = input_now.split(/\+|\-|\×|\÷/g);
+                        numbers.pop();
+                        
+                        let next_operator = operators.pop();
+                        
+                        operator_result(operators, numbers, next_operator);
+                        
+                    }
+                    
+                    
+                    
+                });
+            }
+            
+            //Кнопка равно
+            result.addEventListener('click', function() {
+                let input_now = input.innerHTML;
+                
+                let numbers = input_now.split(/\+|\-|\×|\÷/g);
+                
+                let operators = input_now.replace(/[0-9]|\./g, '').split('');
+                
+                operator_result(operators, numbers);
+            });
+            
+            dot.addEventListener('click', function(e) {
+                let input_now = input.innerHTML;
+                
+                let numbers = input_now.split(/\+|\-|\×|\÷/g);
+                
+                input.innerHTML = Math.sqrt(numbers);
+                
+            });
+        
+        </script>
+    </body>
+</html>

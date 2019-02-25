@@ -1,0 +1,413 @@
+/* выбираем все элементы и их псевдоэлементы */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	font: 16px/1.8 'Open Sans', sans-serif;
+	color: #7e8287;
+}
+
+.container {
+	margin: 0 auto;
+	width: 1145px;
+}
+
+.top-menu {
+	background: #02918c;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.logo {
+	width: 25%;
+	float: left;
+	padding-top: 7px;
+}
+
+.logo a {
+	font-size: 26px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #cfc91d;
+	text-decoration: none;
+}
+
+.logo span {
+	color: #fff;
+}
+
+.top-menu ul {
+	width: 75%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: right;
+}
+
+.top-menu li {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.top-menu li a {
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	padding: 20px 25px;
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	transition: 1s;
+}
+
+.top-menu li a:hover {
+	background: rgba(0,0,0,0.2)
+}
+
+.welcome {
+	background: url(../images/bg.jpg) center/cover;
+	padding: 210px 0;
+	text-align: center;
+	color: #fff;
+	line-height: 1.2;
+	position: relative;
+}
+
+.welcome::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.4);
+}
+
+.welcome .container {
+	position: relative;
+	z-index: 1;
+}
+
+.welcome-first {
+	font-size: 30px;
+}
+
+.welcome-second {
+	font-size: 68px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 12px;
+}
+
+.welcome-third {
+	font-size: 18px;
+}
+
+.welcome img {
+	display: block;
+	margin: 35px auto;
+}
+
+.btn-yellow {
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+	color: #0b1016;
+	background: #cfc91d;
+	display: inline-block;
+	padding: 15px 47px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border: 0;
+}
+
+.btn-yellow:hover {
+	background: #02918c;
+	color: #fff;
+}
+
+.screen {
+	padding: 80px 0 100px;
+	text-align: center;
+	display: block; /* потому что IE считает тег main строчным */
+}
+
+.screen-title {
+	text-transform: uppercase;
+	font-size: 46px;
+	color: #02918c;
+	line-height: 1.2;
+	margin: 0 0 15px;
+}
+
+.screen-content {
+	margin: 0 auto;
+	width: 880px;
+}
+
+.screen-content strong {
+	font-size: 23px;
+}
+
+.skills {
+	padding-top: 60px;
+}
+
+.skills article {
+	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -4px;
+	border-right: 1px solid #d9dbdb;
+	font-size: 11px;
+	padding: 35px 50px;
+}
+
+.skills h2 {
+	font-size: 16px;
+}
+
+.skills article:last-child {
+	border-right: 0;
+}
+
+.screen-services {
+	text-align: left;
+	background: #f0f0e8;
+	position: relative;
+}
+
+.screen-services::after {
+	content: '';
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	background: url(../images/bg.jpg) left/cover;
+	opacity: 0.5;
+}
+
+.services-container {
+	width: 50%;
+}
+
+.services {
+	padding-top: 50px;
+}
+
+.services article {
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -4px;
+	font-size: 11px;
+	padding: 0 100px 40px 0;
+}
+
+.gallery {
+	/* чтобы обрезать заехавший за правый край margin -4px */
+	overflow: hidden;
+}
+
+.gallery figure {
+	display: inline-block;
+	vertical-align: top;
+	width: 25%;
+	margin: 0 -4px 0 0;
+	position: relative;
+}
+
+.gallery img {
+	width: 100%;
+	display: block; /* чтобы убрать отступ снизу */
+}
+
+.gallery figcaption {
+	position: absolute;
+	top: 20px;
+	left: 30px;
+	right: 30px;
+	bottom: 20px;
+	background: rgba(2,145,140,0.85);
+	text-align: center;
+	padding: 10px 15px;
+	opacity: 0;
+	transition: 0.7s;
+	transform-origin: left top;
+	transform: scaleX(0);
+}
+
+.gallery figure:hover figcaption {
+	opacity: 1;
+	transform: scaleY(1);
+
+}
+
+.gallery a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 13px;
+}
+
+.gallery h3 {
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.gallery p {
+	margin: 5px 0;
+}
+
+.contact-form {
+	background: #0b0b0b;
+	padding: 40px 0 70px;
+	text-align: center;
+}
+
+.contact-form input, .contact-form textarea {
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid #898989;
+	display: block;
+	width: 640px;
+	padding: 10px;
+	margin: 0 auto 25px;
+	color: #fff;
+}
+
+.contact-form textarea {
+	width: 920px;
+	max-width: 920px;
+	min-width: 920px;
+	min-height: 100px;
+}
+.contact-form input:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder{
+	text-transform: uppercase;
+	text-align: center;
+}
+.contact-form input:-moz-placeholder,
+.contact-form textarea:-moz-input-placeholder{
+	text-transform: uppercase;
+	text-align: center;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+	outline: none;
+	border-color: #02918c;
+}
+
+footer {
+	background: #000;
+	font-size: 12px;
+	color: #7e8287;
+	text-align: center;
+	padding: 15px 0;
+}
+/*стили будут действовать только на тех страницах, где ширина меньше или равна 1160px*/
+@media (max-width: 1160px){
+	.container{
+		width: 960px;
+		} 
+
+}
+/*эти стили действуют только на */
+@media (max-width: 970px){
+	.container{
+		width: 100%;
+		padding-left: 15px;
+		padding-right: 15px;
+		} 
+	.screen-content{
+		width: 100%;
+	}
+	.skills article{
+		width: 50%;
+		border-right: 0;
+		padding: 15px 30px;
+	}
+	.skills{
+		padding-top: 30px;
+	}
+	.screen-services::after{
+		width: 30%;
+	}
+	.services-container{
+		width: 70%;
+	}
+	.gallery figure{
+		width: 33.333%
+	}
+	.contact-form input, .contact-form textarea{
+		width: 100%;
+		min-width: 100%;
+		max-width: 100%;
+	}
+}
+@media (max-width: 780px) {
+	.top-menu{
+		position: static;
+	}
+	.logo, .top-menu ul{
+		width: 100%;
+		text-align: center;
+		float: none;
+	}
+	.welcome-first{
+		font-size: 20px;
+	}
+	.welcome-second{
+		font-size: 28px;
+		letter-spacing: 5px;
+	}
+	.welcome-thrid{
+		font-size: 16px;
+	}
+	.welcome{
+		padding: 110px 0;
+	}
+	.screen{
+		padding: 40px 0 60px;
+	}
+	.screen-title{
+		font-size: 30px;
+	}
+	.screen-services::after{
+		display: none;
+	}
+	.services-container{
+		width: 100%;
+		text-align: center;
+	}
+	.services article{
+		padding: 0 25px;
+		margin-bottom: 40px;
+	}
+	.gallery figcaption{
+		display: none;
+	}
+	.gallery figure{
+		width: 50%;
+	}
+}
+@media (max-width: 430px){
+	.skills article{
+		width: 100%;
+	}
+	.services article{
+		width: 100%;
+	}
+}

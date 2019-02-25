@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .tabs-container {
+                width: 700px;
+                margin: 50px auto 0;
+            }
+            
+            .tabs-titles {
+                display: flex;
+                justify-content: flex-start;
+            }
+            
+            .tab-title {
+                width: 100px;
+                text-align: center;
+                cursor: pointer;
+                font-size: 20px;
+                background: #cecece;
+                padding: 5px 15px;
+                transition: all .5s;
+            }
+            
+            .tab-title.active {
+                background: #333;
+                color: #fff;
+            }
+            
+            .tab-text {
+                display: none;
+                padding: 15px 25px;
+                border: 1px solid #cecece;
+            }
+            
+            .tab-text.active {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="tabs-container">
+            <div class="tabs-titles">
+                <div class="tab-title active">Tab 1</div>
+                <div class="tab-title">Tab 2</div>
+                <div class="tab-title">Tab 3</div>
+            </div>
+            <div class="tabs-text">
+                <div class="tab-text active">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, numquam.
+                </div>
+                <div class="tab-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit harum laudantium at nihil optio voluptas blanditiis id incidunt iure aliquam.
+                </div>
+                <div class="tab-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque asperiores error necessitatibus qui, eaque adipisci consectetur natus molestiae soluta. Ipsam ex hic sapiente eaque rerum, atque quod, incidunt earum neque?
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            var tab_title = document.querySelectorAll('.tab-title'),
+                tab_text = document.querySelectorAll('.tab-text'),
+                tabs_titles = document.querySelector('.tabs-titles'),
+                active_class = 'active';
+            
+            tabs_titles.addEventListener('click', function(e) {
+                if(e.target.classList.contains('tab-title')) {
+                    tab_title.forEach(function(tab, index, arr) {
+                        tab.classList.remove(active_class);
+                        tab_text[index].classList.remove(active_class);
+                        
+                        if(e.target === tab) {
+                            tab.classList.add(active_class);
+                            tab_text[index].classList.add(active_class);
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
